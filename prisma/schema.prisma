@@ -1,0 +1,42 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Attribute {
+  attribute_id                Int       @id @default(autoincrement())
+  attr_bus_requirement        String
+  attribute_title_en          String
+  attribute_title_fr          String
+  attribute_description_en    String
+  attribute_description_fr    String
+  attribute_other_info        String?
+  module_id                   Int
+  submodule_id                Int
+  attribute_metadata_id       String
+  request_accepted_user       Int
+  repeating_attribute         Boolean
+  min_value                   Int
+  max_value                   Int
+  data_type                   String
+  created_at                  DateTime  @default(now())
+  updated_at                  DateTime  @updatedAt
+  attribute_repeatability     String    // ENUM type will be handled separately
+  is_dependent_attribute      Boolean   @default(false)
+  attribute_status            String
+  request_form_id             Int
+  code_list_id                Int
+  code_value_id               Int
+  is_latest_version           Boolean
+  attribute_version_number    String
+}
